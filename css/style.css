@@ -2475,7 +2475,6 @@ h4,
   font-size: 14px;
   color: #e0e0e0;
   margin-bottom: 15px;
-  text-align: justify;
 }
 
 .gw-footer-motto {
@@ -2663,8 +2662,6 @@ h4,
 @media (max-width: 576px) {
   .gw-footer-container {
     grid-template-columns: 1fr;
-    /* 1 Column on Mobile */
-    text-align: center;
   }
 
   .gw-footer-title {
@@ -2672,21 +2669,17 @@ h4,
     border-bottom: 2px solid rgba(255, 255, 255, 0.3);
   }
 
-  .gw-social-icons {
-    justify-content: center;
-  }
-
   .gw-gallery-grid {
     justify-content: center;
   }
 
-  .gw-address-block,
+  /* .gw-address-block,
   .gw-phone-block,
   .gw-email-block,
   .gw-website-block,
   .gw-hours-block {
     justify-content: center;
-  }
+  } */
 
   .gw-copyright-container {
     flex-direction: column;
@@ -2948,10 +2941,6 @@ h4,
 
 /* responsive */
 @media(max-width:768px) {
-  .ultra-title {
-    font-size: 34px;
-  }
-
   .ultra-sub {
     font-size: 16px;
   }

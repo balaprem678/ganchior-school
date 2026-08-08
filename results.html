@@ -42,7 +42,6 @@
       color: var(--primary);
       font-size: 13px;
       font-weight: 700;
-      padding: 9px 22px;
       border-radius: 50px;
       box-shadow: 0 8px 25px rgba(13, 27, 94, 0.08);
       margin-bottom: 20px;
@@ -50,7 +49,7 @@
     }
 
     .hero h1 {
-      font-size: clamp(30px, 5.5vw, 46px);
+      font-size: clamp(20px, 5.5vw, 46px);
       color: var(--primary);
       font-weight: 800;
       line-height: 1.2;
@@ -150,20 +149,15 @@
     .stats {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
+      gap: 10px;
       margin-bottom: 50px;
     }
 
-    @media (max-width: 700px) {
-      .stats {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
 
     .stat-box {
       background: #fff;
       border-radius: 18px;
-      padding: 22px 12px;
+      padding:  12px;
       text-align: center;
       box-shadow: 0 10px 28px rgba(13, 27, 94, 0.06);
     }
@@ -176,9 +170,10 @@
     }
 
     .stat-box p {
-      font-size: 13.5px;
+      font-size: 12.5px;
       color: var(--primary);
       font-weight: 600;
+      margin: 0;
     }
 
     /* ===== SCHOOL INFO ===== */
@@ -513,36 +508,6 @@
         </div>
       </div>
     </div>
-  </section>
-
-  <!-- SCHOOL INFO -->
-  <section class="info " >
-    <div class="container">
-      <div class="info-card gradient_bg">
-        <h2>Ganchior Matriculation Higher Secondary School</h2>
-        <p>Recognised by the Government of Tamil Nadu. We nurture young minds with strong academics, values and
-          future-ready skills under our motto.</p>
-
-        <div class="motto">
-          STRIVE &nbsp;•&nbsp; SAVE &nbsp;•&nbsp; SERVE
-        </div>
-
-        <div class="contact-links">
-          <a href="tel:8015242169">📞 80152 42169</a>
-          <a href="tel:9962017696">📞 99620 17696</a>
-          <a href="mailto:ganchiorschool@gmail.com">✉️ ganchiorschool@gmail.com</a>
-        </div>
-
-        <p class="address">
-          No. 3/211-B, Karanai, Kilachery (PO), Thiruvallur District, Tamil Nadu – 631402
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="cta">
-    <a href="tel:8015242169">Admissions Open – Call Now</a>
   </section>
 
   <footer class="ganchior-world-footer" id="school-footer-section">
