@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ganchior Matric. Hr. Sec. School | 100% Result 2024-25</title>
+  <link rel="shortcut icon" href="./favicon.png">
+
+  <link rel="stylesheet" href="./css/style.css">
+  <style>
+    :root {
+      --primary: #0d1b5e;
+      --secondary: #000;
+      --text: #3d4a63;
+      --light-blue: #eaf5ff;
+      --light-pink: #fff1f6;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(165deg, var(--light-blue) 0%, var(--light-pink) 50%, var(--light-blue) 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+
+    /* ===== HERO ===== */
+    .hero {
+      padding: 60px 0 40px;
+      text-align: center;
+    }
+
+    .hero .badge {
+      display: inline-block;
+      background: #fff;
+      color: var(--primary);
+      font-size: 13px;
+      font-weight: 700;
+      padding: 9px 22px;
+      border-radius: 50px;
+      box-shadow: 0 8px 25px rgba(13, 27, 94, 0.08);
+      margin-bottom: 20px;
+      letter-spacing: 0.5px;
+    }
+
+    .hero h1 {
+      font-size: clamp(30px, 5.5vw, 46px);
+      color: var(--primary);
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    .hero h1 span {
+      color: var(--secondary);
+    }
+
+    .hero p {
+      font-size: 17px;
+      max-width: 580px;
+      margin: 0 auto 28px;
+    }
+
+    .hero .result-tag {
+      display: inline-block;
+      background: #136ad5;
+      border-color: #136ad5;
+      color: #fff;
+      font-weight: 700;
+      padding: 11px 28px;
+      border-radius: 50px;
+      font-size: 15px;
+    }
+
+    /* ===== RESULTS SECTION ===== */
+    .results {
+      padding: 30px 0 70px;
+    }
+
+    .section-head {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .section-head span {
+      display: inline-block;
+      background: var(--secondary);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 7px 18px;
+      border-radius: 30px;
+      letter-spacing: 1.2px;
+      margin-bottom: 12px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(26px, 4vw, 36px);
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .results-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+
+    @media (max-width: 800px) {
+      .results-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .result-card {
+      background: #fff;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 18px 45px rgba(13, 27, 94, 0.09);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    .result-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 28px 60px rgba(13, 27, 94, 0.14);
+    }
+
+    .result-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .result-card .label {
+      text-align: center;
+      padding: 16px;
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--primary);
+      background: linear-gradient(90deg, #f0f7ff, #fff5f8);
+    }
+
+    /* ===== STATS ===== */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 50px;
+    }
+
+    @media (max-width: 700px) {
+      .stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .stat-box {
+      background: #fff;
+      border-radius: 18px;
+      padding: 22px 12px;
+      text-align: center;
+      box-shadow: 0 10px 28px rgba(13, 27, 94, 0.06);
+    }
+
+    .stat-box h3 {
+      font-size: 32px;
+      color: var(--secondary);
+      font-weight: 800;
+      margin-bottom: 2px;
+    }
+
+    .stat-box p {
+      font-size: 13.5px;
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    /* ===== SCHOOL INFO ===== */
+    .info {
+      padding: 10px 0 60px;
+    }
+
+    .info-card {
+      border-radius: 24px;
+      padding: 40px 32px;
+      text-align: center;
+      box-shadow: 0 18px 45px rgba(13, 27, 94, 0.08);
+    }
+
+    .info-card h2 {
+      font-size: 24px;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+
+    .info-card p {
+      max-width: 640px;
+      margin: 0 auto 20px;
+      font-size: 15.5px;
+    }
+
+    .motto {
+      display: inline-flex;
+      gap: 14px;
+      background: linear-gradient(135deg, var(--light-blue), var(--light-pink));
+      padding: 11px 26px;
+      border-radius: 50px;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: 1px;
+      margin-bottom: 24px;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    .contact-links a {
+      background: var(--light-blue);
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14.5px;
+      padding: 10px 20px;
+      border-radius: 40px;
+      transition: 0.3s;
+    }
+
+    .contact-links a:hover {
+      background: var(--secondary);
+      color: #fff;
+    }
+
+    .address {
+      font-size: 14px;
+      color: #5a6a85;
+    }
+
+    /* ===== CTA ===== */
+    .cta {
+      text-align: center;
+      padding-bottom: 70px;
+    }
+
+    .cta a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #136ad5;
+      border-color: #136ad5;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 17px 40px;
+      border-radius: 60px;
+      transition: 0.35s;
+    }
+
+    .cta a:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 22px 50px rgba(255, 122, 24, 0.5);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar Section -- Start -->
+<nav class="site-nav">
+  <!-- Main Navigation -->
+  <div class="sticky-nav js-sticky-header">
+
+    <div class="container position-relative">
+
+      <div class="site-navigation text-center">
+
+        <!-- Logo -->
+        <a
+          href="./index.html"
+          class="logod menu-absolute"
+          id="logod"
+        >
+          <img
+            src="./images/logo.png"
+            alt="Ganchior Matriculation Higher Secondary School"
+          >
+        </a>
+
+
+        <!-- Desktop Navigation -->
+        <ul class="js-clone-nav d-none d-lg-inline-block site-menu">
+
+          <li >
+            <a href="./index.html">Home</a>
+          </li>
+
+          <li >
+            <a href="./about.html">About</a>
+          </li>
+
+          <li>
+            <a href="./gallery.html">Gallery</a>
+          </li>
+
+          <li class="active">
+            <a href="./results.html">Results</a>
+          </li>
+
+          <li>
+            <a href="./transport.html">Transport</a>
+          </li>
+
+          <li>
+            <a href="./contact.html">Contact</a>
+          </li>
+
+        </ul>
+
+
+        <!-- Desktop Enroll Button -->
+        <a
+          href="application.html"
+          class="primary_btn btn-book btn btn-primary btn-sm menu-absolute"
+        >
+          Enroll Now
+        </a>
+
+
+        <!-- Mobile 3 Bar Button -->
+        <a
+          href="#"
+          id="mobileMenuBtn"
+          class="burger ml-auto float-right site-menu-toggle js-menu-toggle d-inline-block d-lg-none light position-absolute end-0"
+          aria-label="Open Menu"
+        >
+          <span></span>
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- Mobile Overlay -->
+  <div
+    class="mobile-overlay"
+    id="mobileOverlay"
+  ></div>
+
+
+  <!-- Mobile Menu -->
+  <div
+    class="mobile-menu"
+    id="mobileMenu"
+  >
+
+    <!-- Mobile Menu Header -->
+    <div class="mobile-menu-header">
+
+      <a href="./index.html">
+        <img
+          src="./images/logo.png"
+          alt="Ganchior School"
+        >
+      </a>
+
+      <!-- Close Button -->
+      <button
+        type="button"
+        class="mobile-close"
+        id="mobileClose"
+        aria-label="Close Menu"
+      >
+        <span></span>
+        <span></span>
+      </button>
+
+    </div>
+
+
+    <!-- Mobile Menu Links -->
+    <div class="mobile-menu-content">
+
+      <a
+        href="./index.html"
+        class="mobile-link "
+      >
+        <span>01</span>
+        Home
+      </a>
+
+      <a
+        href="./about.html"
+        class="mobile-link"
+      >
+        <span>02</span>
+        About
+      </a>
+
+      <a
+        href="./gallery.html"
+        class="mobile-link"
+      >
+        <span>03</span>
+        Gallery
+      </a>
+
+      <a
+        href="./results.html"
+        class="mobile-link active"
+      >
+        <span>04</span>
+        Results
+      </a>
+
+      <a
+        href="./transport.html"
+        class="mobile-link"
+      >
+        <span>05</span>
+        Transport
+      </a>
+
+      <a
+        href="./contact.html"
+        class="mobile-link"
+      >
+        <span>06</span>
+        Contact
+      </a>
+
+
+      <!-- Mobile Enroll -->
+      <a
+        href="application.html"
+        class="mobile-enroll-btn"
+      >
+        <span>Enroll Now</span>
+        <span>→</span>
+      </a>
+
+    </div>
+
+
+    <!-- Mobile Contact -->
+    <div class="mobile-menu-footer">
+
+      <a href="tel:+919962017696">
+        +91 9962017696
+      </a>
+
+      <a href="mailto:ganchiorschool@gmail.com">
+        ganchiorschool@gmail.com
+      </a>
+
+    </div>
+
+  </div>
+
+</nav>
+  <a href="application.html" class="enroll-btn">Enroll Now</a>
+  <!-- Navbar Section -- End -->
+  <!-- HERO -->
+  <section class="hero mt-5">
+    <div class="container">
+      <div class="badge">A Unit of G.P.R Educational Trust, Chennai</div>
+      <h1>Celebrating Academic Brilliance<br><span>Well Done, Toppers!</span></h1>
+      <p>Proud to announce 100% result in both X & XII Standard Board Examinations 2024-25</p>
+    </div>
+  </section>
+
+  <!-- RESULTS -->
+  <section class="results">
+    <div class="container">
+      <!-- Quick Stats -->
+      <div class="stats">
+        <div class="stat-box">
+          <h3>100%</h3>
+          <p>X / XII Standard</p>
+        </div>
+        <div class="stat-box">
+          <h3>478</h3>
+          <p>Top Score (X)</p>
+        </div>
+        <div class="stat-box">
+          <h3>578</h3>
+          <p>Top Score (XII)</p>
+        </div>
+      </div>
+
+      <!-- Images -->
+      <div class="results-grid">
+        <div class="result-card">
+          <img src="./images/result/result_1.png" alt="X Standard Result 2024-25">
+          <div class="label">X Standard Result 2024-25</div>
+        </div>
+        <div class="result-card">
+          <img src="./images/result/result_2.png" alt="XII Standard Result 2024-25">
+          <div class="label">XII Standard Result 2024-25</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCHOOL INFO -->
+  <section class="info " >
+    <div class="container">
+      <div class="info-card gradient_bg">
+        <h2>Ganchior Matriculation Higher Secondary School</h2>
+        <p>Recognised by the Government of Tamil Nadu. We nurture young minds with strong academics, values and
+          future-ready skills under our motto.</p>
+
+        <div class="motto">
+          STRIVE &nbsp;•&nbsp; SAVE &nbsp;•&nbsp; SERVE
+        </div>
+
+        <div class="contact-links">
+          <a href="tel:8015242169">📞 80152 42169</a>
+          <a href="tel:9962017696">📞 99620 17696</a>
+          <a href="mailto:ganchiorschool@gmail.com">✉️ ganchiorschool@gmail.com</a>
+        </div>
+
+        <p class="address">
+          No. 3/211-B, Karanai, Kilachery (PO), Thiruvallur District, Tamil Nadu – 631402
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <a href="tel:8015242169">Admissions Open – Call Now</a>
+  </section>
+
+  <footer class="ganchior-world-footer" id="school-footer-section">
+    <!-- ... (Your full original footer code - kept exactly as provided) ... -->
+    <div class="gw-footer-container" id="footer-main-wrapper">
+      <!-- About Us Column -->
+      <div class="gw-footer-col gw-footer-about" id="footer-about-col">
+        <h3 class="gw-footer-title" id="footer-about-heading">About Us</h3>
+        <p class="gw-footer-text" id="footer-about-description">
+          Established in 2008 under G.P.R. Educational Trust, Chennai. We blend US Curriculum (LKG–V) and Samacheer
+          Syllabus (VI–XII) with NEET coaching, Robotics & Coding.
+        </p>
+        <p class="gw-footer-motto" id="footer-school-motto">
+          <strong>Motto:</strong> STRIVE • SAVE • SERVE
+        </p>
+        <div class="gw-social-connect" id="footer-social-section">
+          <h4 class="gw-footer-col gw-footer-about" style="color: white;">Connect</h4>
+          <div class="gw-social-icons" id="footer-social-links">
+            <a href="#" class="gw-social-icon gw-facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="gw-social-icon gw-twitter" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="gw-social-icon gw-instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="gw-social-icon gw-youtube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="#" class="gw-social-icon gw-whatsapp" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+      </div>
+      <!-- Quick Links Column -->
+      <div class="gw-footer-col gw-footer-links" id="footer-links-col">
+        <h3 class="gw-footer-title" id="footer-quicklinks-heading">Quick Links</h3>
+        <ul class="gw-footer-nav" id="footer-navigation">
+          <li class="gw-nav-item"><a href="./about.html" class="gw-nav-link">About Our School</a></li>
+          <li class="gw-nav-item"><a href="./application.html" class="gw-nav-link">Admissions Open</a></li>
+          <li class="gw-nav-item"><a href="./gallery.html" class="gw-nav-link">Gallery</a></li>
+          <li class="gw-nav-item"><a href="./contact.html" class="gw-nav-link">Contact Us</a></li>
+        </ul>
+      </div>
+      <!-- Gallery Column -->
+      <div class="gw-footer-col gw-footer-gallery" id="footer-gallery-col">
+        <h3 class="gw-footer-title" id="footer-gallery-heading">Campus Life</h3>
+        <div class="gw-gallery-grid" id="footer-gallery-images">
+          <div class="gw-gallery-item" id="gallery-img-1">
+            <img src="./images/gallery/cat/Events/3.SPORTS/2. SPORTS DAY (4).JPG" alt="Sports Day Celebration"
+              class="gw-gallery-img">
+          </div>
+          <div class="gw-gallery-item" id="gallery-img-2">
+            <img src="./images/gallery/cat/Events/10. GRADUATION DAY/DSC_0452.JPG" alt="Science Laboratory"
+              class="gw-gallery-img">
+          </div>
+          <div class="gw-gallery-item" id="gallery-img-3">
+            <img src="./images/gallery/cat/ECA/6. EDUCATIONAL TOUR/DSC_0187.JPG" alt="Smart Classroom"
+              class="gw-gallery-img">
+          </div>
+          <div class="gw-gallery-item" id="gallery-img-4">
+            <img src="./images/gallery/cat/ECA/5. SCIENCE EXPO/DSC_0413.JPG" alt="KALAM 2047 Event"
+              class="gw-gallery-img">
+          </div>
+          <div class="gw-gallery-item" id="gallery-img-5">
+            <img src="./images/gallery/cat/Special Days/18. PONGAL/DSC_0244.JPG" alt="Graduation Day"
+              class="gw-gallery-img">
+          </div>
+          <div class="gw-gallery-item" id="gallery-img-6">
+            <img src="./images/gallery/cat/Special Days/12. CHILDRENS DAY/5. CHILDRENS DAY (2).JPG"
+              alt="Digital Library" class="gw-gallery-img">
+          </div>
+        </div>
+      </div>
+      <!-- Contact Column -->
+      <div class="gw-footer-col gw-footer-contact" id="footer-contact-col">
+        <h3 class="gw-footer-title" id="footer-contact-heading">Contact Us</h3>
+        <address class="gw-contact-info" id="footer-address">
+          <div class="gw-address-block" id="school-address">
+            <i class="fas fa-map-marker-alt"></i>
+            <p>No. 3/211-B, Karanai, Kilachery Post,<br>Thiruvallur District, <br> Tamil Nadu - 631 402</p>
+          </div>
+          <div class="gw-phone-block" id="school-phones">
+            <i class="fas fa-phone-alt"></i>
+            <p>
+              <a href="tel:+919962017696">+91 99620 17696</a><br>
+              <a href="tel:+918015242169">+91 80152 42169</a>
+            </p>
+          </div>
+          <div class="gw-email-block" id="school-email">
+            <i class="fas fa-envelope"></i>
+            <a href="mailto:ganchiorschool@gmail.com">ganchiorschool@gmail.com</a>
+          </div>
+          <div class="gw-website-block" id="school-website">
+            <i class="fas fa-globe"></i>
+            <a href="https://ganchiorworld.com" target="_blank">Ganchiorworld.com</a>
+          </div>
+          <div class="gw-hours-block" id="office-hours">
+            <i class="fas fa-clock"></i>
+            <p>Office Hours: <br> Mon - Sat, 8:30 AM - 4:00 PM</p>
+          </div>
+        </address>
+      </div>
+    </div>
+    <!-- Copyright Bar -->
+    <div class="gw-copyright-bar" id="footer-copyright">
+      <div class="gw-copyright-container">
+        <p class="gw-copyright-text" id="copyright-message">Copyright © 2026. All Rights Reserved.</p>
+        <p class="gw-credits" id="footer-credits">
+          <span>Designed and Developed By -</span>
+          <a href="https://cuanticdesigns.com/" target="_blank" class="gw-privacy-link">Cuantic Designs</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./js/common.js"></script>
+
+
+</body>
+
+</html>

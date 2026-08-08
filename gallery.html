@@ -1,0 +1,1407 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="author" content="Untree.co">
+  <link rel="shortcut icon" href="./favicon.png">
+
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <title>Gallery - Ganchior Matriculation Higher Secondary School</title>
+  <style>
+    :root {
+      --primary: #12355b;
+      --primary-dark: #0b2340;
+      --secondary: #e63946;
+      --accent: #ffb703;
+      --white: #ffffff;
+      --text: #203040;
+      --muted: #6b7280;
+      --bg-1: #f7fbff;
+      --bg-2: #eef5fc;
+      --glass: rgba(255, 255, 255, 0.72);
+      --border: rgba(18, 53, 91, 0.10);
+      --shadow: 0 10px 30px rgba(11, 35, 64, 0.10);
+      --shadow-lg: 0 22px 50px rgba(11, 35, 64, 0.18);
+      --radius: 22px;
+      --radius-sm: 16px;
+      --transition: all 0.35s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      overflow-x: hidden;
+      color: var(--text);
+      background: #dbdbdb !important;
+    }
+
+    .event-gallery {
+      position: relative;
+      padding: 90px 0 110px;
+      overflow: hidden;
+    }
+
+    .event-gallery::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.28) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.28) 1px, transparent 1px);
+      background-size: 36px 36px;
+      opacity: 0.30;
+      pointer-events: none;
+    }
+
+    .gallery-shell {
+      position: relative;
+      z-index: 2;
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 0 18px;
+    }
+
+    .gallery-header {
+      text-align: center;
+      max-width: 860px;
+      margin: 0 auto 36px;
+      animation: fadeUp 0.7s ease both;
+    }
+
+    .gallery-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: rgba(18, 53, 91, 0.08);
+      color: var(--primary);
+      border: 1px solid rgba(18, 53, 91, 0.08);
+      font-size: 0.9rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 18px;
+    }
+
+    .gallery-title {
+      font-size: clamp(2.2rem, 4vw, 4rem);
+      line-height: 1.08;
+      font-weight: 900;
+      color: var(--primary-dark);
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+    }
+
+    .gallery-title span {
+      background: linear-gradient(90deg, #12355b, #2e6ca4, #e63946);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .gallery-subtitle {
+      font-size: 1.02rem;
+      line-height: 1.8;
+      color: var(--muted);
+    }
+
+    .gallery-filters-wrap {
+      background: var(--glass);
+      border: 1px solid rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(12px);
+      box-shadow: var(--shadow);
+      border-radius: 24px;
+      padding: 16px;
+      margin-bottom: 34px;
+      overflow-x: auto;
+      animation: fadeUp 0.85s ease both;
+    }
+
+    .gallery-filters {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin: 0;
+      overflow-x: auto;
+
+      @media screen and (max-width:768px) {
+        width: 300%;
+      }
+    }
+
+    .filter-btn {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--white);
+      color: var(--primary);
+      padding: 12px 18px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: 700;
+      transition: var(--transition);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.04);
+      white-space: nowrap;
+    }
+
+    .filter-btn::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--primary), #2a5f96);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.35s ease;
+      z-index: 0;
+    }
+
+    .filter-btn span {
+      position: relative;
+      z-index: 1;
+    }
+
+    .filter-btn:hover::before,
+    .filter-btn.active::before {
+      transform: scaleX(1);
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      color: #fff;
+      border-color: transparent;
+      transform: translateY(-2px);
+      box-shadow: 0 14px 28px rgba(18, 53, 91, 0.18);
+    }
+
+    /* GRID WITHOUT GAPS */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+      grid-auto-rows: 10px;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .gallery-item {
+      display: block;
+      width: 100%;
+      transition: var(--transition);
+      animation: cardReveal 0.55s ease both;
+    }
+
+    .gallery-item.hide {
+      display: none !important;
+    }
+
+    .gallery-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius);
+      background: #dfeaf5;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      isolation: isolate;
+      cursor: pointer;
+    }
+
+    .gallery-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .gallery-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.7s ease, filter 0.45s ease;
+    }
+
+    .gallery-card:hover img {
+      transform: scale(1.06);
+      filter: brightness(0.96) saturate(1.08);
+    }
+
+    .gallery-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      /* background: linear-gradient(to top,
+          rgba(8, 20, 36, 0.90) 0%,
+          rgba(8, 20, 36, 0.42) 38%,
+          rgba(8, 20, 36, 0.05) 72%); */
+      z-index: 1;
+      transition: var(--transition);
+    }
+
+    .gallery-card::after {
+      content: "";
+      position: absolute;
+      top: -120%;
+      left: -55%;
+      width: 45%;
+      height: 250%;
+      background: linear-gradient(to right,
+          rgba(255, 255, 255, 0) 0%,
+          rgba(255, 255, 255, 0.18) 50%,
+          rgba(255, 255, 255, 0) 100%);
+      transform: rotate(18deg);
+      transition: 0.9s ease;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .gallery-card:hover::after {
+      left: 120%;
+    }
+
+    .gallery-label {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      z-index: 3;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 2px 6px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      backdrop-filter: blur(10px);
+      color: #000266;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      display: none;
+    }
+    
+    .gallery-overlay {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 3;
+      padding: 22px 18px 18px;
+      color: #fff;
+      transform: translateY(10px);
+      transition: var(--transition);
+    }
+
+    .gallery-card:hover .gallery-overlay {
+      transform: translateY(0);
+    }
+
+    .gallery-overlay h4 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      line-height: 1.35;
+      margin-bottom: 6px;
+    }
+
+    .gallery-overlay p {
+      font-size: 0.88rem;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.88);
+    }
+
+    .gallery-view {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 12px;
+      padding: 9px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(10px);
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    /* LIGHTBOX */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(3, 10, 20, 0.92);
+      backdrop-filter: blur(8px);
+      z-index: 99999;
+    }
+
+    .lightbox.active {
+      display: flex;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .lightbox-inner {
+      position: relative;
+      width: min(1100px, 96vw);
+      max-width: 1100px;
+    }
+
+    .lightbox-img {
+      width: 100%;
+      max-height: 84vh;
+      object-fit: contain;
+      display: block;
+      border-radius: 20px;
+      background: #fff;
+      box-shadow: 0 26px 70px rgba(0, 0, 0, 0.38);
+    }
+
+    .lightbox-caption {
+      text-align: center;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 700;
+      margin-top: 12px;
+      line-height: 1.5;
+    }
+
+    .close-lightbox,
+    .prev,
+    .next {
+      position: absolute;
+      border: none;
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.16);
+      color: white;
+      border-radius: 50%;
+      backdrop-filter: blur(8px);
+      transition: var(--transition);
+      z-index: 20;
+    }
+
+    .close-lightbox:hover,
+    .prev:hover,
+    .next:hover {
+      background: rgba(255, 255, 255, 0.28);
+      transform: scale(1.08);
+    }
+
+    .close-lightbox {
+      top: -18px;
+      right: -12px;
+      width: 54px;
+      height: 54px;
+      font-size: 1.45rem;
+    }
+
+    .prev,
+    .next {
+      top: 50%;
+      transform: translateY(-50%);
+      width: 58px;
+      height: 58px;
+      font-size: 1.4rem;
+    }
+
+    .prev {
+      left: -74px;
+    }
+
+    .next {
+      right: -74px;
+    }
+
+    .gw-gallery-img {
+      width: 100%;
+      height: 90px;
+      object-fit: cover;
+      border-radius: 10px;
+      transition: transform 0.35s ease;
+    }
+
+    .gw-gallery-item:hover .gw-gallery-img {
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 991px) {
+      .event-gallery {
+        padding: 72px 0 92px;
+      }
+
+      .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 18px;
+      }
+
+      .prev {
+        left: 10px;
+      }
+
+      .next {
+        right: 10px;
+      }
+
+      .close-lightbox {
+        top: 10px;
+        right: 10px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .gallery-shell {
+        padding: 0 14px;
+      }
+
+      .gallery-title {
+        font-size: 2rem;
+      }
+
+      .gallery-subtitle {
+        font-size: 0.95rem;
+        line-height: 1.75;
+      }
+
+      .gallery-filters-wrap {
+        padding: 12px;
+        border-radius: 18px;
+      }
+
+      .gallery-filters {
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding-bottom: 4px;
+      }
+
+      .gallery-filters::-webkit-scrollbar {
+        height: 6px;
+      }
+
+      .gallery-filters::-webkit-scrollbar-thumb {
+        background: rgba(18, 53, 91, 0.25);
+        border-radius: 999px;
+      }
+
+      .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+        grid-auto-rows: 8px;
+        gap: 14px;
+      }
+
+      .gallery-card {
+        border-radius: 18px;
+      }
+
+      .gallery-label {
+        font-size: 0.7rem;
+        padding: 7px 12px;
+      }
+
+      .gallery-overlay {
+        padding: 18px 15px 15px;
+      }
+
+      .gallery-overlay h4 {
+        font-size: 0.95rem;
+      }
+
+      .gallery-overlay p {
+        font-size: 0.82rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .gallery-card {
+        border-radius: 16px;
+      }
+
+      .prev,
+      .next {
+        width: 44px;
+        height: 44px;
+        font-size: 1.1rem;
+      }
+
+      .lightbox {
+        padding: 10px;
+      }
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes cardReveal {
+      from {
+        opacity: 0;
+        transform: translateY(22px) scale(0.98);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar Section -- Start -->
+<nav class="site-nav">
+  <!-- Main Navigation -->
+  <div class="sticky-nav js-sticky-header">
+
+    <div class="container position-relative">
+
+      <div class="site-navigation text-center">
+
+        <!-- Logo -->
+        <a
+          href="./index.html"
+          class="logod menu-absolute"
+          id="logod"
+        >
+          <img
+            src="./images/logo.png"
+            alt="Ganchior Matriculation Higher Secondary School"
+          >
+        </a>
+
+
+        <!-- Desktop Navigation -->
+        <ul class="js-clone-nav d-none d-lg-inline-block site-menu">
+
+          <li >
+            <a href="./index.html">Home</a>
+          </li>
+
+          <li >
+            <a href="./about.html">About</a>
+          </li>
+
+          <li class="active">
+            <a href="./gallery.html">Gallery</a>
+          </li>
+
+          <li>
+            <a href="./results.html">Results</a>
+          </li>
+
+          <li>
+            <a href="./transport.html">Transport</a>
+          </li>
+
+          <li>
+            <a href="./contact.html">Contact</a>
+          </li>
+
+        </ul>
+
+
+        <!-- Desktop Enroll Button -->
+        <a
+          href="application.html"
+          class="primary_btn btn-book btn btn-primary btn-sm menu-absolute"
+        >
+          Enroll Now
+        </a>
+
+
+        <!-- Mobile 3 Bar Button -->
+        <a
+          href="#"
+          id="mobileMenuBtn"
+          class="burger ml-auto float-right site-menu-toggle js-menu-toggle d-inline-block d-lg-none light position-absolute end-0"
+          aria-label="Open Menu"
+        >
+          <span></span>
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- Mobile Overlay -->
+  <div
+    class="mobile-overlay"
+    id="mobileOverlay"
+  ></div>
+
+
+  <!-- Mobile Menu -->
+  <div
+    class="mobile-menu"
+    id="mobileMenu"
+  >
+
+    <!-- Mobile Menu Header -->
+    <div class="mobile-menu-header">
+
+      <a href="./index.html">
+        <img
+          src="./images/logo.png"
+          alt="Ganchior School"
+        >
+      </a>
+
+      <!-- Close Button -->
+      <button
+        type="button"
+        class="mobile-close"
+        id="mobileClose"
+        aria-label="Close Menu"
+      >
+        <span></span>
+        <span></span>
+      </button>
+
+    </div>
+
+
+    <!-- Mobile Menu Links -->
+    <div class="mobile-menu-content">
+
+      <a
+        href="./index.html"
+        class="mobile-link "
+      >
+        <span>01</span>
+        Home
+      </a>
+
+      <a
+        href="./about.html"
+        class="mobile-link"
+      >
+        <span>02</span>
+        About
+      </a>
+
+      <a
+        href="./gallery.html"
+        class="mobile-link active"
+      >
+        <span>03</span>
+        Gallery
+      </a>
+
+      <a
+        href="./results.html"
+        class="mobile-link"
+      >
+        <span>04</span>
+        Results
+      </a>
+
+      <a
+        href="./transport.html"
+        class="mobile-link"
+      >
+        <span>05</span>
+        Transport
+      </a>
+
+      <a
+        href="./contact.html"
+        class="mobile-link"
+      >
+        <span>06</span>
+        Contact
+      </a>
+
+
+      <!-- Mobile Enroll -->
+      <a
+        href="application.html"
+        class="mobile-enroll-btn"
+      >
+        <span>Enroll Now</span>
+        <span>→</span>
+      </a>
+
+    </div>
+
+
+    <!-- Mobile Contact -->
+    <div class="mobile-menu-footer">
+
+      <a href="tel:+919962017696">
+        +91 9962017696
+      </a>
+
+      <a href="mailto:ganchiorschool@gmail.com">
+        ganchiorschool@gmail.com
+      </a>
+
+    </div>
+
+  </div>
+
+</nav>
+  <a href="application.html" class="enroll-btn">Enroll Now</a>
+  <!-- Navbar Section -- End -->
+  <section id="nexxt" class="event-gallery">
+    <div class="gallery-shell">
+      <div class="gallery-header">
+        <div class="gallery-badge"><i class="fa-solid fa-camera"></i> School Gallery</div>
+        <h2 class="gallery-title">Events & <span>Celebrations</span></h2>
+        <p class="gallery-subtitle">
+          Explore the memorable moments of Ganchior Matriculation Higher Secondary School through celebrations,
+          competitions, educational visits, student achievements, leadership moments, and vibrant campus life.
+        </p>
+      </div>
+      <div class="gallery-filters-wrap">
+        <div class="gallery-filters">
+          <button class="filter-btn" data-filter="childrensday"><span>Children's Day</span></button>
+          <button class="filter-btn" data-filter="christmas"><span>Christmas</span></button>
+          <button class="filter-btn" data-filter="fire_safety_rescue_drill"><span>Fire Safety & Rescue
+              Drill</span></button>
+          <button class="filter-btn" data-filter="ganchior_outreach_program"><span>Ganchior Outreach
+              Program</span></button>
+          <button class="filter-btn" data-filter="graduation_day"><span>Graduation Day</span></button>
+          <button class="filter-btn" data-filter="interschool_chess_tournament"><span>Interschool Chess
+              Tournament</span></button>
+          <button class="filter-btn" data-filter="investiture_ceremony"><span>Investiture Ceremony</span></button>
+          <button class="filter-btn" data-filter="kalam"><span>Kalam</span></button>
+          <button class="filter-btn" data-filter="pongal_celebration"><span>Pongal Celebration</span></button>
+          <button class="filter-btn" data-filter="school_field_trip"><span>School Field Trip</span></button>
+          <button class="filter-btn" data-filter="sports_day"><span>Sports Day</span></button>
+        </div>
+      </div>
+      <div class="gallery-grid" id="galleryGrid">
+        <!-- Children's Day images -->
+        <div class="gallery-item childrensday">
+          <div class="gallery-card">
+            <img src="./images/gallery/childrens_day/childrens_day_1.jpg" alt="Children's Day 1" loading="lazy">
+            <span class="gallery-label">Children's Day</span>
+          </div>
+        </div>
+        <div class="gallery-item childrensday">
+          <div class="gallery-card">
+            <img src="./images/gallery/childrens_day/childrens_day_2.jpg" alt="Children's Day 2" loading="lazy">
+            <span class="gallery-label">Children's Day</span>
+          </div>
+        </div>
+        <div class="gallery-item childrensday">
+          <div class="gallery-card">
+            <img src="./images/gallery/childrens_day/childrens_day_3.jpg" alt="Children's Day 3" loading="lazy">
+            <span class="gallery-label">Children's Day</span>
+          </div>
+        </div>
+        <div class="gallery-item childrensday">
+          <div class="gallery-card">
+            <img src="./images/gallery/childrens_day/childrens_day_4.jpg" alt="Children's Day 4" loading="lazy">
+            <span class="gallery-label">Children's Day</span>
+          </div>
+        </div>
+        <!-- Christmas Celebration Images -->
+        <div class="gallery-item christmas">
+          <div class="gallery-card">
+            <img src="./images/gallery/chirstmas_celebration/chirstmas_celebration_1.jpg" alt="Christmas Celebration 1"
+              loading="lazy">
+            <span class="gallery-label">Christmas</span>
+          </div>
+        </div>
+        <div class="gallery-item christmas">
+          <div class="gallery-card">
+            <img src="./images/gallery/chirstmas_celebration/chirstmas_celebration_2.jpg" alt="Christmas Celebration 2"
+              loading="lazy">
+            <span class="gallery-label">Christmas</span>
+          </div>
+        </div>
+        <div class="gallery-item christmas">
+          <div class="gallery-card">
+            <img src="./images/gallery/chirstmas_celebration/chirstmas_celebration_3.jpg" alt="Christmas Celebration 3"
+              loading="lazy">
+            <span class="gallery-label">Christmas</span>
+          </div>
+        </div>
+        <div class="gallery-item christmas">
+          <div class="gallery-card">
+            <img src="./images/gallery/chirstmas_celebration/chirstmas_celebration_4.jpg" alt="Christmas Celebration 4"
+              loading="lazy">
+            <span class="gallery-label">Christmas</span>
+          </div>
+        </div>
+        <div class="gallery-item christmas">
+          <div class="gallery-card">
+            <img src="./images/gallery/chirstmas_celebration/chirstmas_celebration_5.jpg" alt="Christmas Celebration 5"
+              loading="lazy">
+            <span class="gallery-label">Christmas</span>
+          </div>
+        </div>
+        <div class="gallery-item christmas">
+          <div class="gallery-card">
+            <img src="./images/gallery/chirstmas_celebration/chirstmas_celebration_6.jpg" alt="Christmas Celebration 6"
+              loading="lazy">
+            <span class="gallery-label">Christmas</span>
+          </div>
+        </div>
+        <!-- Fire Safety & Rescue Drill Images -->
+        <div class="gallery-item fire_safety_rescue_drill">
+          <div class="gallery-card">
+            <img src="./images/gallery/fire_safety_rescue_drill/fire_safety_rescue_drill_1.jpg"
+              alt="Fire Safety Rescue Drill 1" loading="lazy">
+            <span class="gallery-label">Fire Safety Drill</span>
+          </div>
+        </div>
+        <div class="gallery-item fire_safety_rescue_drill">
+          <div class="gallery-card">
+            <img src="./images/gallery/fire_safety_rescue_drill/fire_safety_rescue_drill_2.jpg"
+              alt="Fire Safety Rescue Drill 2" loading="lazy">
+            <span class="gallery-label">Fire Safety Drill</span>
+          </div>
+        </div>
+        <div class="gallery-item fire_safety_rescue_drill">
+          <div class="gallery-card">
+            <img src="./images/gallery/fire_safety_rescue_drill/fire_safety_rescue_drill_3.jpg"
+              alt="Fire Safety Rescue Drill 3" loading="lazy">
+            <span class="gallery-label">Fire Safety Drill</span>
+          </div>
+        </div>
+        <div class="gallery-item fire_safety_rescue_drill">
+          <div class="gallery-card">
+            <img src="./images/gallery/fire_safety_rescue_drill/fire_safety_rescue_drill_4.jpg"
+              alt="Fire Safety Rescue Drill 4" loading="lazy">
+            <span class="gallery-label">Fire Safety Drill</span>
+          </div>
+        </div>
+        <!-- Ganchior Outreach Program Images -->
+        <div class="gallery-item ganchior_outreach_program">
+          <div class="gallery-card">
+            <img src="./images/gallery/ganchior_outreach_program/ganchior_outreach_program.jpg"
+              alt="Ganchior Outreach Program" loading="lazy">
+            <span class="gallery-label">Outreach Program</span>
+          </div>
+        </div>
+        <!-- Graduation Day Images -->
+        <div class="gallery-item graduation_day">
+          <div class="gallery-card">
+            <img src="./images/gallery/graduation_day/graduation_day_1.jpg" alt="Graduation Day 1" loading="lazy">
+            <span class="gallery-label">Graduation Day</span>
+          </div>
+        </div>
+        <div class="gallery-item graduation_day">
+          <div class="gallery-card">
+            <img src="./images/gallery/graduation_day/graduation_day_2.jpg" alt="Graduation Day 2" loading="lazy">
+            <span class="gallery-label">Graduation Day</span>
+          </div>
+        </div>
+        <div class="gallery-item graduation_day">
+          <div class="gallery-card">
+            <img src="./images/gallery/graduation_day/graduation_day_3.jpg" alt="Graduation Day 3" loading="lazy">
+            <span class="gallery-label">Graduation Day</span>
+          </div>
+        </div>
+        <div class="gallery-item graduation_day">
+          <div class="gallery-card">
+            <img src="./images/gallery/graduation_day/graduation_day_4.jpg" alt="Graduation Day 4" loading="lazy">
+            <span class="gallery-label">Graduation Day</span>
+          </div>
+        </div>
+        <!-- interschool_chess_tournament -->
+        <div class="gallery-item interschool_chess_tournament">
+          <div class="gallery-card">
+            <img src="./images/gallery/interschool_chess_tournament/interschool_chess_tournament_1.jpg"
+              alt="Interschool Chess Tournament 1" loading="lazy">
+            <span class="gallery-label">Chess Tournament</span>
+          </div>
+        </div>
+        <div class="gallery-item interschool_chess_tournament">
+          <div class="gallery-card">
+            <img src="./images/gallery/interschool_chess_tournament/interschool_chess_tournament_2.jpg"
+              alt="Interschool Chess Tournament 2" loading="lazy">
+            <span class="gallery-label">Chess Tournament</span>
+          </div>
+        </div>
+        <div class="gallery-item interschool_chess_tournament">
+          <div class="gallery-card">
+            <img src="./images/gallery/interschool_chess_tournament/interschool_chess_tournament_3.jpg"
+              alt="Interschool Chess Tournament 3" loading="lazy">
+            <span class="gallery-label">Chess Tournament</span>
+          </div>
+        </div>
+        <div class="gallery-item interschool_chess_tournament">
+          <div class="gallery-card">
+            <img src="./images/gallery/interschool_chess_tournament/interschool_chess_tournament_4.jpg"
+              alt="Interschool Chess Tournament 4" loading="lazy">
+            <span class="gallery-label">Chess Tournament</span>
+          </div>
+        </div>
+        <div class="gallery-item interschool_chess_tournament">
+          <div class="gallery-card">
+            <img src="./images/gallery/interschool_chess_tournament/interschool_chess_tournament_5.jpg"
+              alt="Interschool Chess Tournament 5" loading="lazy">
+            <span class="gallery-label">Chess Tournament</span>
+          </div>
+        </div>
+        <!-- investiture_ceremony -->
+        <div class="gallery-item investiture_ceremony">
+          <div class="gallery-card">
+            <img src="./images/gallery/investiture_ceremony/investiture_ceremony.jpg" alt="Investiture Ceremony"
+              loading="lazy">
+            <span class="gallery-label">Investiture</span>
+          </div>
+        </div>
+        <!-- Kalam -->
+        <div class="gallery-item kalam">
+          <div class="gallery-card">
+            <img src="./images/gallery/kalam/kalam_1.jpg" alt="Kalam Event 1" loading="lazy">
+            <span class="gallery-label">Kalam</span>
+          </div>
+        </div>
+        <div class="gallery-item kalam">
+          <div class="gallery-card">
+            <img src="./images/gallery/kalam/kalam_2.jpg" alt="Kalam Event 2" loading="lazy">
+            <span class="gallery-label">Kalam</span>
+          </div>
+        </div>
+        <div class="gallery-item kalam">
+          <div class="gallery-card">
+            <img src="./images/gallery/kalam/kalam_3.jpg" alt="Kalam Event 3" loading="lazy">
+            <span class="gallery-label">Kalam</span>
+          </div>
+        </div>
+        <!-- Pongal Celebration Images -->
+        <div class="gallery-item pongal_celebration">
+          <div class="gallery-card">
+            <img src="./images/gallery/pongal_celebration/pongal_celebration_1.jpg" alt="Pongal Celebration 1"
+              loading="lazy">
+            <span class="gallery-label">Pongal</span>
+          </div>
+        </div>
+        <div class="gallery-item pongal_celebration">
+          <div class="gallery-card">
+            <img src="./images/gallery/pongal_celebration/pongal_celebration_2.jpg" alt="Pongal Celebration 2"
+              loading="lazy">
+            <span class="gallery-label">Pongal</span>
+          </div>
+        </div>
+        <div class="gallery-item pongal_celebration">
+          <div class="gallery-card">
+            <img src="./images/gallery/pongal_celebration/pongal_celebration_3.jpg" alt="Pongal Celebration 3"
+              loading="lazy">
+            <span class="gallery-label">Pongal</span>
+          </div>
+        </div>
+        <div class="gallery-item pongal_celebration">
+          <div class="gallery-card">
+            <img src="./images/gallery/pongal_celebration/pongal_celebration_4.jpg" alt="Pongal Celebration 4"
+              loading="lazy">
+            <span class="gallery-label">Pongal</span>
+          </div>
+        </div>
+        <!-- School Field Trip Images -->
+        <div class="gallery-item school_field_trip">
+          <div class="gallery-card">
+            <img src="./images/gallery/school_field_trip/school_field_trip_1.jpg" alt="School Field Trip 1"
+              loading="lazy">
+            <span class="gallery-label">Field Trip</span>
+          </div>
+        </div>
+        <div class="gallery-item school_field_trip">
+          <div class="gallery-card">
+            <img src="./images/gallery/school_field_trip/school_field_trip_2.jpg" alt="School Field Trip 2"
+              loading="lazy">
+            <span class="gallery-label">Field Trip</span>
+          </div>
+        </div>
+        <div class="gallery-item school_field_trip">
+          <div class="gallery-card">
+            <img src="./images/gallery/school_field_trip/school_field_trip_3.jpg" alt="School Field Trip 3"
+              loading="lazy">
+            <span class="gallery-label">Field Trip</span>
+          </div>
+        </div>
+        <div class="gallery-item school_field_trip">
+          <div class="gallery-card">
+            <img src="./images/gallery/school_field_trip/school_field_trip_4.jpg" alt="School Field Trip 4"
+              loading="lazy">
+            <span class="gallery-label">Field Trip</span>
+          </div>
+        </div>
+        <div class="gallery-item school_field_trip">
+          <div class="gallery-card">
+            <img src="./images/gallery/school_field_trip/school_field_trip_5.jpg" alt="School Field Trip 5"
+              loading="lazy">
+            <span class="gallery-label">Field Trip</span>
+          </div>
+        </div>
+        <div class="gallery-item school_field_trip">
+          <div class="gallery-card">
+            <img src="./images/gallery/school_field_trip/school_field_trip_6.jpg" alt="School Field Trip 6"
+              loading="lazy">
+            <span class="gallery-label">Field Trip</span>
+          </div>
+        </div>
+        <div class="gallery-item school_field_trip">
+          <div class="gallery-card">
+            <img src="./images/gallery/school_field_trip/school_field_trip_7.jpg" alt="School Field Trip 7"
+              loading="lazy">
+            <span class="gallery-label">Field Trip</span>
+          </div>
+        </div>
+        <div class="gallery-item school_field_trip">
+          <div class="gallery-card">
+            <img src="./images/gallery/school_field_trip/school_field_trip_8.jpg" alt="School Field Trip 8"
+              loading="lazy">
+            <span class="gallery-label">Field Trip</span>
+          </div>
+        </div>
+        <div class="gallery-item school_field_trip">
+          <div class="gallery-card">
+            <img src="./images/gallery/school_field_trip/school_field_trip_9.jpg" alt="School Field Trip 9"
+              loading="lazy">
+            <span class="gallery-label">Field Trip</span>
+          </div>
+        </div>
+        <div class="gallery-item school_field_trip">
+          <div class="gallery-card">
+            <img src="./images/gallery/school_field_trip/school_field_trip_10.jpg" alt="School Field Trip 10"
+              loading="lazy">
+            <span class="gallery-label">Field Trip</span>
+          </div>
+        </div>
+        <div class="gallery-item school_field_trip">
+          <div class="gallery-card">
+            <img src="./images/gallery/school_field_trip/school_field_trip_11.jpg" alt="School Field Trip 11"
+              loading="lazy">
+            <span class="gallery-label">Field Trip</span>
+          </div>
+        </div>
+        <!-- Sports Day Images -->
+        <div class="gallery-item sports_day">
+          <div class="gallery-card">
+            <img src="./images/gallery/sports_day/sports_day_1.jpg" alt="Sports Day 1" loading="lazy">
+            <span class="gallery-label">Sports Day</span>
+          </div>
+        </div>
+        <div class="gallery-item sports_day">
+          <div class="gallery-card">
+            <img src="./images/gallery/sports_day/sports_day_2.jpg" alt="Sports Day 2" loading="lazy">
+            <span class="gallery-label">Sports Day</span>
+          </div>
+        </div>
+        <div class="gallery-item sports_day">
+          <div class="gallery-card">
+            <img src="./images/gallery/sports_day/sports_day_3.jpg" alt="Sports Day 3" loading="lazy">
+            <span class="gallery-label">Sports Day</span>
+          </div>
+        </div>
+        <div class="gallery-item sports_day">
+          <div class="gallery-card">
+            <img src="./images/gallery/sports_day/sports_day_4.jpg" alt="Sports Day 4" loading="lazy">
+            <span class="gallery-label">Sports Day</span>
+          </div>
+        </div>
+        <div class="gallery-item sports_day">
+          <div class="gallery-card">
+            <img src="./images/gallery/sports_day/sports_day_5.jpg" alt="Sports Day 5" loading="lazy">
+            <span class="gallery-label">Sports Day</span>
+          </div>
+        </div>
+        <div class="gallery-item sports_day">
+          <div class="gallery-card">
+            <img src="./images/gallery/sports_day/sports_day_6.jpg" alt="Sports Day 6" loading="lazy">
+            <span class="gallery-label">Sports Day</span>
+          </div>
+        </div>
+        <div class="gallery-item sports_day">
+          <div class="gallery-card">
+            <img src="./images/gallery/sports_day/sports_day_7.jpg" alt="Sports Day 7" loading="lazy">
+            <span class="gallery-label">Sports Day</span>
+          </div>
+        </div>
+        <div class="gallery-item sports_day">
+          <div class="gallery-card">
+            <img src="./images/gallery/sports_day/sports_day_8.jpg" alt="Sports Day 8" loading="lazy">
+            <span class="gallery-label">Sports Day</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-inner">
+      <img class="lightbox-img" id="lightbox-img" alt="">
+      <div class="lightbox-caption" id="lightbox-caption"></div>
+      <button class="close-lightbox" id="closeLightbox">✕</button>
+      <button class="prev" id="prevBtn">❮</button>
+      <button class="next" id="nextBtn">❯</button>
+    </div>
+  </div>
+  <!-- Your Footer -->
+  <!-- Paste your full footer here -->
+  <footer class="ganchior-world-footer" id="school-footer-section">
+    <div class="gw-footer-container" id="footer-main-wrapper">
+      <!-- About Us Column -->
+      <div class="gw-footer-col gw-footer-about" id="footer-about-col">
+        <h3 class="gw-footer-title" id="footer-about-heading">About Us</h3>
+        <p class="gw-footer-text" id="footer-about-description">
+          Established in 2008 under G.P.R. Educational Trust, Chennai. We blend US Curriculum (LKG–V) and Samacheer
+          Syllabus (VI–XII) with NEET coaching, Robotics & Coding.
+        </p>
+        <p class="gw-footer-motto" id="footer-school-motto">
+          <strong>Motto:</strong> STRIVE • SAVE • SERVE
+        </p>
+        <div class="gw-social-connect" id="footer-social-section">
+          <h4 class="gw-footer-col gw-footer-about" style="color: white;">Connect</h4>
+          <div class="gw-social-icons" id="footer-social-links">
+            <a href="#" class="gw-social-icon gw-facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="gw-social-icon gw-twitter" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="gw-social-icon gw-instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="gw-social-icon gw-youtube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="#" class="gw-social-icon gw-whatsapp" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+      </div>
+      <!-- Quick Links Column -->
+      <div class="gw-footer-col gw-footer-links" id="footer-links-col">
+        <h3 class="gw-footer-title" id="footer-quicklinks-heading">Quick Links</h3>
+        <ul class="gw-footer-nav" id="footer-navigation">
+          <li class="gw-nav-item"><a href="./about.html" class="gw-nav-link">About Our School</a></li>
+          <li class="gw-nav-item"><a href="./application.html" class="gw-nav-link">Admissions Open</a></li>
+          <li class="gw-nav-item"><a href="./gallery.html" class="gw-nav-link">Gallery</a></li>
+          <li class="gw-nav-item"><a href="./contact.html" class="gw-nav-link">Contact Us</a></li>
+        </ul>
+      </div>
+      <!-- Gallery Column -->
+      <div class="gw-footer-col gw-footer-gallery" id="footer-gallery-col">
+        <h3 class="gw-footer-title" id="footer-gallery-heading">Campus Life</h3>
+        <div class="gw-gallery-grid" id="footer-gallery-images">
+          <div class="gw-gallery-item" id="gallery-img-1">
+            <img src="./images/gallery/cat/Events/3.SPORTS/2. SPORTS DAY (4).JPG" alt="Sports Day Celebration"
+              class="gw-gallery-img">
+          </div>
+          <div class="gw-gallery-item" id="gallery-img-2">
+            <img src="./images/gallery/cat/Events/10. GRADUATION DAY/DSC_0452.JPG" alt="Science Laboratory"
+              class="gw-gallery-img">
+          </div>
+          <div class="gw-gallery-item" id="gallery-img-3">
+            <img src="./images/gallery/cat/ECA/6. EDUCATIONAL TOUR/DSC_0187.JPG" alt="Smart Classroom"
+              class="gw-gallery-img">
+          </div>
+          <div class="gw-gallery-item" id="gallery-img-4">
+            <img src="./images/gallery/cat/ECA/5. SCIENCE EXPO/DSC_0413.JPG" alt="KALAM 2047 Event"
+              class="gw-gallery-img">
+          </div>
+          <div class="gw-gallery-item" id="gallery-img-5">
+            <img src="./images/gallery/cat/Special Days/18. PONGAL/DSC_0244.JPG" alt="Graduation Day"
+              class="gw-gallery-img">
+          </div>
+          <div class="gw-gallery-item" id="gallery-img-6">
+            <img src="./images/gallery/cat/Special Days/12. CHILDRENS DAY/5. CHILDRENS DAY (2).JPG"
+              alt="Digital Library" class="gw-gallery-img">
+          </div>
+        </div>
+      </div>
+      <!-- Contact Column -->
+      <div class="gw-footer-col gw-footer-contact" id="footer-contact-col">
+        <h3 class="gw-footer-title" id="footer-contact-heading">Contact Us</h3>
+        <address class="gw-contact-info" id="footer-address">
+          <div class="gw-address-block" id="school-address">
+            <i class="fas fa-map-marker-alt"></i>
+            <p>No. 3/211-B, Karanai, Kilachery Post,<br>Thiruvallur District, <br> Tamil Nadu - 631 402</p>
+          </div>
+          <div class="gw-phone-block" id="school-phones">
+            <i class="fas fa-phone-alt"></i>
+            <p>
+              <a href="tel:+919962017696">+91 99620 17696</a><br>
+              <a href="tel:+918015242169">+91 80152 42169</a>
+            </p>
+          </div>
+          <div class="gw-email-block" id="school-email">
+            <i class="fas fa-envelope"></i>
+            <a href="mailto:ganchiorschool@gmail.com">ganchiorschool@gmail.com</a>
+          </div>
+          <div class="gw-website-block" id="school-website">
+            <i class="fas fa-globe"></i>
+            <a href="https://ganchiorworld.com" target="_blank">Ganchiorworld.com</a>
+          </div>
+          <div class="gw-hours-block" id="office-hours">
+            <i class="fas fa-clock"></i>
+            <p>Office Hours: <br> Mon - Sat, 8:30 AM - 4:00 PM</p>
+          </div>
+        </address>
+      </div>
+    </div>
+    <!-- Copyright Bar -->
+    <div class="gw-copyright-bar" id="footer-copyright">
+      <div class="gw-copyright-container">
+        <p class="gw-copyright-text" id="copyright-message">Copyright © 2026. All Rights Reserved.</p>
+        <p class="gw-credits" id="footer-credits">
+          <span>Designed and Developed By -</span>
+          <a href="https://cuanticdesigns.com/" target="_blank" class="gw-privacy-link">Cuantic Designs</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+  <script>
+    const grid = document.getElementById("galleryGrid");
+    const items = Array.from(document.querySelectorAll(".gallery-item"));
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightbox-img");
+    const lightboxCaption = document.getElementById("lightbox-caption");
+    const closeLightbox = document.getElementById("closeLightbox");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    let visibleImages = [];
+    let currentIndex = 0;
+    function resizeGridItem(item) {
+      const rowHeight = parseInt(window.getComputedStyle(grid).getPropertyValue("grid-auto-rows"));
+      const rowGap = parseInt(window.getComputedStyle(grid).getPropertyValue("gap"));
+      const card = item.querySelector(".gallery-card");
+      if (!card) return;
+      const rowSpan = Math.ceil((card.getBoundingClientRect().height + rowGap) / (rowHeight + rowGap));
+      item.style.gridRowEnd = "span " + rowSpan;
+    }
+    function resizeAllGridItems() {
+      items.forEach(item => {
+        if (!item.classList.contains("hide")) {
+          resizeGridItem(item);
+        }
+      });
+    }
+    function updateVisibleImages() {
+      visibleImages = Array.from(document.querySelectorAll(".gallery-item:not(.hide) .gallery-card img"));
+    }
+    function animateVisibleCards() {
+      const visibleCards = document.querySelectorAll(".gallery-item:not(.hide)");
+      visibleCards.forEach((item, index) => {
+        item.style.animation = "none";
+        item.offsetHeight;
+        item.style.animation = `cardReveal 0.45s ease ${index * 0.02}s both`;
+      });
+    }
+    function filterGallery(filter) {
+      items.forEach(item => {
+        const show = filter === "all" || item.classList.contains(filter);
+        if (show) {
+          item.classList.remove("hide");
+        } else {
+          item.classList.add("hide");
+        }
+      });
+      updateVisibleImages();
+      animateVisibleCards();
+      setTimeout(() => {
+        resizeAllGridItems();
+      }, 100);
+    }
+    filterButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        filterButtons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        filterGallery(btn.dataset.filter);
+      });
+    });
+    function setLightboxContent(img) {
+      const item = img.closest(".gallery-item");
+      const title = item.querySelector(".gallery-overlay h4")?.textContent || "";
+      const category = item.querySelector(".gallery-label")?.textContent || "";
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+      lightboxCaption.textContent = `${title}${category ? " • " + category : ""}`;
+    }
+    function openLightbox(img) {
+      updateVisibleImages();
+      currentIndex = visibleImages.indexOf(img);
+      setLightboxContent(img);
+      lightbox.classList.add("active");
+      document.body.style.overflow = "hidden";
+    }
+    function closeBox() {
+      lightbox.classList.remove("active");
+      document.body.style.overflow = "";
+    }
+    function showNext() {
+      if (!visibleImages.length) return;
+      currentIndex = (currentIndex + 1) % visibleImages.length;
+      setLightboxContent(visibleImages[currentIndex]);
+    }
+    function showPrev() {
+      if (!visibleImages.length) return;
+      currentIndex = (currentIndex - 1 + visibleImages.length) % visibleImages.length;
+      setLightboxContent(visibleImages[currentIndex]);
+    }
+    document.querySelectorAll(".gallery-card img").forEach(img => {
+      img.addEventListener("click", () => openLightbox(img));
+      if (img.complete) {
+        setTimeout(resizeAllGridItems, 50);
+      } else {
+        img.addEventListener("load", resizeAllGridItems);
+      }
+    });
+    closeLightbox.addEventListener("click", closeBox);
+    nextBtn.addEventListener("click", showNext);
+    prevBtn.addEventListener("click", showPrev);
+    lightbox.addEventListener("click", (e) => {
+      if (e.target === lightbox) closeBox();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (!lightbox.classList.contains("active")) return;
+      if (e.key === "Escape") closeBox();
+      if (e.key === "ArrowRight") showNext();
+      if (e.key === "ArrowLeft") showPrev();
+    });
+    window.addEventListener("load", () => {
+      // Set Children's Day as active on load
+      const defaultFilter = "childrensday";
+      const defaultBtn = document.querySelector(`.filter-btn[data-filter="${defaultFilter}"]`);
+      if (defaultBtn) {
+        filterButtons.forEach(b => b.classList.remove("active"));
+        defaultBtn.classList.add("active");
+        filterGallery(defaultFilter);
+      } else {
+        // fallback: show all if button missing
+        filterGallery("all");
+      }
+      updateVisibleImages();
+      resizeAllGridItems();
+    });
+    window.addEventListener("resize", resizeAllGridItems);
+    setTimeout(resizeAllGridItems, 300);
+  </script>
+  <script src="./js/common.js"></script>
+</body>
+
+</html>

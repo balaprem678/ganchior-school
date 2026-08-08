@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transport | Ganchior Matric. Hr. Sec. School</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="./css/style.css">
+  <link rel="shortcut icon" href="./favicon.png">
+
+    <style>
+        :root {
+            --navy: #10192c;
+            --navy-2: #182238;
+            --gold: #000266;
+            --paper: #faf8f3;
+            --panel: #ffffff;
+            --ink: #1c2130;
+            --muted: #656c7a;
+            --line: #e6e2d6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.65;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+
+        a:focus-visible,
+        button:focus-visible {
+            outline: 2px solid var(--gold);
+            outline-offset: 3px;
+        }
+
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Fraunces', serif;
+            font-weight: 440;
+        }
+
+        .eyebrow {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+
+        /* ===== Header ===== */
+        .topbar {
+            background: var(--navy);
+            padding: 22px 0;
+        }
+
+        .topbar .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .brand h1 {
+            font-size: 17px;
+            color: #f4f1e9;
+            font-weight: 500;
+        }
+
+        .brand p {
+            font-size: 11.5px;
+            color: #8b91a3;
+            letter-spacing: 0.04em;
+            margin-top: 2px;
+        }
+
+        .topbar .badge {
+            font-size: 11px;
+            color: var(--gold);
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            border: 1px solid rgba(169, 131, 79, 0.45);
+            padding: 7px 14px;
+            border-radius: 2px;
+            white-space: nowrap;
+        }
+
+        /* ===== Hero ===== */
+        .hero {
+            position: relative;
+            min-height: 68vh;
+            display: flex;
+            align-items: flex-end;
+            background: var(--navy);
+        }
+
+        .hero img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.62;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(16, 25, 44, 0.35) 0%, rgba(16, 25, 44, 0.55) 45%, rgba(16, 25, 44, 0.96) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            padding: 90px 0 56px;
+            width: 100%;
+        }
+
+        .hero-content .eyebrow {
+            color: #000266;
+            margin-bottom: 18px;
+            display: block;
+        }
+
+        .hero-content h2 {
+            font-size: clamp(34px, 5vw, 54px);
+            color: #f8f6ef;
+            line-height: 1.14;
+            max-width: 16ch;
+            margin-bottom: 20px;
+        }
+
+        .hero-content p {
+            font-size: 16px;
+            color: #c7cad6;
+            max-width: 48ch;
+        }
+
+        .hero-rule {
+            width: 56px;
+            height: 2px;
+            background: var(--gold);
+            margin: 26px 0 0;
+        }
+
+        /* ===== Assurance strip ===== */
+        .assurance {
+            background: var(--navy-2);
+            border-top: 1px solid rgba(169, 131, 79, 0.2);
+        }
+
+        .assurance .container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        @media (max-width: 720px) {
+            .assurance .container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .assurance-item {
+            padding: 30px 6px;
+            border-right: 1px solid rgba(169, 131, 79, 0.16);
+        }
+
+        .assurance .container>.assurance-item:last-child {
+            border-right: none;
+        }
+
+        @media (max-width: 720px) {
+            .assurance-item {
+                border-right: none;
+                border-bottom: 1px solid rgba(169, 131, 79, 0.16);
+            }
+
+            .assurance .container>.assurance-item:last-child {
+                border-bottom: none;
+            }
+        }
+
+        .assurance-item h3 {
+            font-size: 15px;
+            color: #f4f1e9;
+            font-weight: 500;
+            margin-bottom: 6px;
+        }
+
+        .assurance-item p {
+            font-size: 13px;
+            color: #9198a9;
+            max-width: 32ch;
+        }
+
+        /* ===== Coverage section ===== */
+        .coverage {
+            padding: 76px 0 68px;
+        }
+
+        .coverage-grid {
+            display: grid;
+            grid-template-columns: 0.85fr 1.15fr;
+            gap: 60px;
+        }
+
+        @media (max-width: 800px) {
+            .coverage-grid {
+                grid-template-columns: 1fr;
+                gap: 36px;
+            }
+        }
+
+        .coverage h2 {
+            font-size: 30px;
+            color: var(--navy);
+            line-height: 1.2;
+            margin: 12px 0 16px;
+        }
+
+        .coverage-grid>div:first-child p {
+            color: var(--muted);
+            font-size: 14.5px;
+            max-width: 40ch;
+        }
+
+        .route-list {
+            border-top: 1px solid var(--line);
+        }
+
+        .route-row {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            padding: 18px 0;
+            border-bottom: 1px solid var(--line);
+            gap: 20px;
+        }
+
+        .route-row .place {
+            font-family: 'Fraunces', serif;
+            font-size: 17px;
+            color: var(--ink);
+        }
+
+        .route-row .place span {
+            display: block;
+            font-family: 'Inter', sans-serif;
+            font-size: 12.5px;
+            color: var(--muted);
+            margin-top: 2px;
+        }
+
+        .route-row .time {
+            font-size: 13px;
+            color: var(--gold);
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        /* ===== Contact ===== */
+        .contact {
+            background: var(--panel);
+            border-top: 1px solid var(--line);
+            padding: 70px 0 90px;
+        }
+
+        .contact-panel {
+            border: 1px solid var(--line);
+            border-top: 3px solid var(--gold);
+            padding: 44px 46px;
+            display: grid;
+            grid-template-columns: 1.3fr 1fr;
+            gap: 40px;
+        }
+
+        @media (max-width: 760px) {
+            .contact-panel {
+                grid-template-columns: 1fr;
+                padding: 34px 26px;
+            }
+        }
+
+        .contact-panel h2 {
+            font-size: 26px;
+            color: var(--navy);
+            margin: 12px 0 14px;
+        }
+
+        .contact-panel p.desc {
+            color: var(--muted);
+            font-size: 14.5px;
+            max-width: 42ch;
+            margin-bottom: 28px;
+        }
+
+        .phones {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .phones a {
+            color: var(--navy);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 12px 20px;
+            border: 1px solid var(--navy);
+            border-radius: 2px;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+
+        .phones a:hover {
+            background: var(--navy);
+            color: #f4f1e9;
+        }
+
+        .email-link {
+            display: inline-block;
+            color: var(--gold);
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(169, 131, 79, 0.4);
+        }
+
+        .email-link:hover {
+            border-color: var(--gold);
+        }
+
+        .contact-panel address {
+            font-style: normal;
+            border-left: 1px solid var(--line);
+            padding-left: 32px;
+            font-size: 13.5px;
+            color: var(--muted);
+            line-height: 1.9;
+        }
+
+        @media (max-width: 760px) {
+            .contact-panel address {
+                border-left: none;
+                border-top: 1px solid var(--line);
+                padding-left: 0;
+                padding-top: 24px;
+            }
+        }
+
+        .contact-panel address .label {
+            display: block;
+            font-size: 11px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--gold);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        /* ===== Footer ===== */
+        .footer {
+            background: var(--navy);
+            text-align: center;
+            padding: 22px 0;
+            font-size: 12px;
+            color: #7c8296;
+            letter-spacing: 0.03em;
+        }
+    </style>
+</head>
+
+<body>
+  <!-- Navbar Section -- Start -->
+<nav class="site-nav">
+  <!-- Main Navigation -->
+  <div class="sticky-nav js-sticky-header">
+
+    <div class="container position-relative">
+
+      <div class="site-navigation text-center">
+
+        <!-- Logo -->
+        <a
+          href="./index.html"
+          class="logod menu-absolute"
+          id="logod"
+        >
+          <img
+            src="./images/logo.png"
+            alt="Ganchior Matriculation Higher Secondary School"
+          >
+        </a>
+
+
+        <!-- Desktop Navigation -->
+        <ul class="js-clone-nav d-none d-lg-inline-block site-menu">
+
+          <li >
+            <a href="./index.html">Home</a>
+          </li>
+
+          <li >
+            <a href="./about.html">About</a>
+          </li>
+
+          <li>
+            <a href="./gallery.html">Gallery</a>
+          </li>
+
+          <li>
+            <a href="./results.html">Results</a>
+          </li>
+
+          <li class="active">
+            <a href="./transport.html">Transport</a>
+          </li>
+
+          <li>
+            <a href="./contact.html">Contact</a>
+          </li>
+
+        </ul>
+
+
+        <!-- Desktop Enroll Button -->
+        <a
+          href="application.html"
+          class="primary_btn btn-book btn btn-primary btn-sm menu-absolute"
+        >
+          Enroll Now
+        </a>
+
+
+        <!-- Mobile 3 Bar Button -->
+        <a
+          href="#"
+          id="mobileMenuBtn"
+          class="burger ml-auto float-right site-menu-toggle js-menu-toggle d-inline-block d-lg-none light position-absolute end-0"
+          aria-label="Open Menu"
+        >
+          <span></span>
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- Mobile Overlay -->
+  <div
+    class="mobile-overlay"
+    id="mobileOverlay"
+  ></div>
+
+
+  <!-- Mobile Menu -->
+  <div
+    class="mobile-menu"
+    id="mobileMenu"
+  >
+
+    <!-- Mobile Menu Header -->
+    <div class="mobile-menu-header">
+
+      <a href="./index.html">
+        <img
+          src="./images/logo.png"
+          alt="Ganchior School"
+        >
+      </a>
+
+      <!-- Close Button -->
+      <button
+        type="button"
+        class="mobile-close"
+        id="mobileClose"
+        aria-label="Close Menu"
+      >
+        <span></span>
+        <span></span>
+      </button>
+
+    </div>
+
+
+    <!-- Mobile Menu Links -->
+    <div class="mobile-menu-content">
+
+      <a
+        href="./index.html"
+        class="mobile-link "
+      >
+        <span>01</span>
+        Home
+      </a>
+
+      <a
+        href="./about.html"
+        class="mobile-link"
+      >
+        <span>02</span>
+        About
+      </a>
+
+      <a
+        href="./gallery.html"
+        class="mobile-link"
+      >
+        <span>03</span>
+        Gallery
+      </a>
+
+      <a
+        href="./results.html"
+        class="mobile-link"
+      >
+        <span>04</span>
+        Results
+      </a>
+
+      <a
+        href="./transport.html"
+        class="mobile-link active"
+      >
+        <span>05</span>
+        Transport
+      </a>
+
+      <a
+        href="./contact.html"
+        class="mobile-link"
+      >
+        <span>06</span>
+        Contact
+      </a>
+
+
+      <!-- Mobile Enroll -->
+      <a
+        href="application.html"
+        class="mobile-enroll-btn"
+      >
+        <span>Enroll Now</span>
+        <span>→</span>
+      </a>
+
+    </div>
+
+
+    <!-- Mobile Contact -->
+    <div class="mobile-menu-footer">
+
+      <a href="tel:+919962017696">
+        +91 9962017696
+      </a>
+
+      <a href="mailto:ganchiorschool@gmail.com">
+        ganchiorschool@gmail.com
+      </a>
+
+    </div>
+
+  </div>
+
+</nav>
+  <a href="application.html" class="enroll-btn">Enroll Now</a>
+  <!-- Navbar Section -- End -->
+    <section class="hero">
+        <img src="./images/transport/transport_4.png"
+            alt="A school bus on a quiet countryside road">
+        <div class="hero-content">
+            <div class="container">
+                <span class="eyebrow">School Transport</span>
+                <h2>Safe passage, from your doorstep to the gate.</h2>
+                <p>Fixed routes through Karanai and Kilachery carry students to school and home again, on time, every
+                    day.</p>
+                <div class="hero-rule"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="assurance">
+        <div class="container">
+            <div class="assurance-item">
+                <h3>Maintained fleet</h3>
+                <p>Vehicles are inspected and serviced on a fixed schedule.</p>
+            </div>
+            <div class="assurance-item">
+                <h3>Experienced staff</h3>
+                <p>Drivers and attendants trained specifically for student transport.</p>
+            </div>
+            <div class="assurance-item">
+                <h3>Reliable timing</h3>
+                <p>Pick-up and drop held to the school's daily schedule.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="coverage">
+        <div class="container coverage-grid">
+            <div>
+                <span class="eyebrow">Coverage</span>
+                <h2>Two routes, one purpose.</h2>
+                <p>Our buses serve Karanai, Kilachery, and the surrounding villages. Exact stop points are confirmed
+                    with each family at the time of registration.</p>
+            </div>
+            <div class="route-list">
+                <div class="route-row">
+                    <div class="place">Karanai<span>Route origin</span></div>
+                    <div class="time">7:10 AM</div>
+                </div>
+                <div class="route-row">
+                    <div class="place">Kilachery<span>Mid-route stop</span></div>
+                    <div class="time">7:25 AM</div>
+                </div>
+                <div class="route-row">
+                    <div class="place">Surrounding villages<span>Confirmed at registration</span></div>
+                    <div class="time">On route</div>
+                </div>
+                <div class="route-row">
+                    <div class="place">School<span>Arrival</span></div>
+                    <div class="time">7:45 AM</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact">
+        <div class="container">
+            <div class="contact-panel">
+                <div>
+                    <span class="eyebrow">Enquiries</span>
+                    <h2>Register for the bus</h2>
+                    <p class="desc">Call the school office to confirm the stop nearest you, this term's fee, and your
+                        child's seat.</p>
+                    <div class="phones">
+                        <a href="tel:8015242169">80152 42169</a>
+                        <a href="tel:9962017696">99620 17696</a>
+                    </div>
+                    <a href="mailto:ganchiorschool@gmail.com" class="email-link">ganchiorschool@gmail.com</a>
+                </div>
+                <address>
+                    <span class="label">School Office</span>
+                    No. 3/211-B, Karanai,<br>
+                    Kilachery (PO),<br>
+                    Thiruvallur District,<br>
+                    Tamil Nadu – 631402
+                </address>
+            </div>
+        </div>
+    </section>
+
+    <footer class="ganchior-world-footer" id="school-footer-section">
+        <!-- ... (Your full original footer code - kept exactly as provided) ... -->
+        <div class="gw-footer-container" id="footer-main-wrapper">
+            <!-- About Us Column -->
+            <div class="gw-footer-col gw-footer-about" id="footer-about-col">
+                <h3 class="gw-footer-title" id="footer-about-heading">About Us</h3>
+                <p class="gw-footer-text" id="footer-about-description">
+                    Established in 2008 under G.P.R. Educational Trust, Chennai. We blend US Curriculum (LKG–V) and
+                    Samacheer
+                    Syllabus (VI–XII) with NEET coaching, Robotics & Coding.
+                </p>
+                <p class="gw-footer-motto" id="footer-school-motto">
+                    <strong>Motto:</strong> STRIVE • SAVE • SERVE
+                </p>
+                <div class="gw-social-connect" id="footer-social-section">
+                    <h4 class="gw-footer-col gw-footer-about" style="color: white;">Connect</h4>
+                    <div class="gw-social-icons" id="footer-social-links">
+                        <a href="#" class="gw-social-icon gw-facebook" aria-label="Facebook"><i
+                                class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="gw-social-icon gw-twitter" aria-label="Twitter"><i
+                                class="fab fa-twitter"></i></a>
+                        <a href="#" class="gw-social-icon gw-instagram" aria-label="Instagram"><i
+                                class="fab fa-instagram"></i></a>
+                        <a href="#" class="gw-social-icon gw-youtube" aria-label="YouTube"><i
+                                class="fab fa-youtube"></i></a>
+                        <a href="#" class="gw-social-icon gw-whatsapp" aria-label="WhatsApp"><i
+                                class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            <!-- Quick Links Column -->
+            <div class="gw-footer-col gw-footer-links" id="footer-links-col">
+                <h3 class="gw-footer-title" id="footer-quicklinks-heading">Quick Links</h3>
+                <ul class="gw-footer-nav" id="footer-navigation">
+                    <li class="gw-nav-item"><a href="./about.html" class="gw-nav-link">About Our School</a></li>
+                    <li class="gw-nav-item"><a href="./application.html" class="gw-nav-link">Admissions Open</a></li>
+                    <li class="gw-nav-item"><a href="./gallery.html" class="gw-nav-link">Gallery</a></li>
+                    <li class="gw-nav-item"><a href="./contact.html" class="gw-nav-link">Contact Us</a></li>
+                </ul>
+            </div>
+            <!-- Gallery Column -->
+            <div class="gw-footer-col gw-footer-gallery" id="footer-gallery-col">
+                <h3 class="gw-footer-title" id="footer-gallery-heading">Campus Life</h3>
+                <div class="gw-gallery-grid" id="footer-gallery-images">
+                    <div class="gw-gallery-item" id="gallery-img-1">
+                        <img src="./images/gallery/cat/Events/3.SPORTS/2. SPORTS DAY (4).JPG"
+                            alt="Sports Day Celebration" class="gw-gallery-img">
+                    </div>
+                    <div class="gw-gallery-item" id="gallery-img-2">
+                        <img src="./images/gallery/cat/Events/10. GRADUATION DAY/DSC_0452.JPG" alt="Science Laboratory"
+                            class="gw-gallery-img">
+                    </div>
+                    <div class="gw-gallery-item" id="gallery-img-3">
+                        <img src="./images/gallery/cat/ECA/6. EDUCATIONAL TOUR/DSC_0187.JPG" alt="Smart Classroom"
+                            class="gw-gallery-img">
+                    </div>
+                    <div class="gw-gallery-item" id="gallery-img-4">
+                        <img src="./images/gallery/cat/ECA/5. SCIENCE EXPO/DSC_0413.JPG" alt="KALAM 2047 Event"
+                            class="gw-gallery-img">
+                    </div>
+                    <div class="gw-gallery-item" id="gallery-img-5">
+                        <img src="./images/gallery/cat/Special Days/18. PONGAL/DSC_0244.JPG" alt="Graduation Day"
+                            class="gw-gallery-img">
+                    </div>
+                    <div class="gw-gallery-item" id="gallery-img-6">
+                        <img src="./images/gallery/cat/Special Days/12. CHILDRENS DAY/5. CHILDRENS DAY (2).JPG"
+                            alt="Digital Library" class="gw-gallery-img">
+                    </div>
+                </div>
+            </div>
+            <!-- Contact Column -->
+            <div class="gw-footer-col gw-footer-contact" id="footer-contact-col">
+                <h3 class="gw-footer-title" id="footer-contact-heading">Contact Us</h3>
+                <address class="gw-contact-info" id="footer-address">
+                    <div class="gw-address-block" id="school-address">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>No. 3/211-B, Karanai, Kilachery Post,<br>Thiruvallur District, <br> Tamil Nadu - 631 402</p>
+                    </div>
+                    <div class="gw-phone-block" id="school-phones">
+                        <i class="fas fa-phone-alt"></i>
+                        <p>
+                            <a href="tel:+919962017696">+91 99620 17696</a><br>
+                            <a href="tel:+918015242169">+91 80152 42169</a>
+                        </p>
+                    </div>
+                    <div class="gw-email-block" id="school-email">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:ganchiorschool@gmail.com">ganchiorschool@gmail.com</a>
+                    </div>
+                    <div class="gw-website-block" id="school-website">
+                        <i class="fas fa-globe"></i>
+                        <a href="https://ganchiorworld.com" target="_blank">Ganchiorworld.com</a>
+                    </div>
+                    <div class="gw-hours-block" id="office-hours">
+                        <i class="fas fa-clock"></i>
+                        <p>Office Hours: <br> Mon - Sat, 8:30 AM - 4:00 PM</p>
+                    </div>
+                </address>
+            </div>
+        </div>
+        <!-- Copyright Bar -->
+        <div class="gw-copyright-bar" id="footer-copyright">
+            <div class="gw-copyright-container">
+                <p class="gw-copyright-text" id="copyright-message">Copyright © 2026. All Rights Reserved.</p>
+                <p class="gw-credits" id="footer-credits">
+                    <span>Designed and Developed By -</span>
+                    <a href="https://cuanticdesigns.com/" target="_blank" class="gw-privacy-link">Cuantic Designs</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+  <script src="./js/common.js"></script>
+
+</body>
+
+</html>
